@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        {% if app.request.get("_route") == "create_list" %}
+            <h3>Créer une nouvelle liste</h3>
+        {% else %}
+            <h3>Modifier la liste <span style="color: {{ list.color }}">{{ list.name }}</span></h3>
+        {% endif %}
+
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.color) }}
+            {% if app.request.get("_route") == "create_list" %}
+                <input type="submit" value="Créer" class="btn btn-success mt-2">
+            {% else %}
+                <input type="submit" value="Modifier" class="btn btn-warning mt-2">
+            {% endif %}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
