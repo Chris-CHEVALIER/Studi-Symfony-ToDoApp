@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        {% if app.request.get("_route") == "create_task" %}
+            <h3>Créer une nouvelle tâche</h3>
+        {% else %}
+            <h3>Modifier la tâche {{ task.title }}</h3>
+        {% endif %}
+
+        {{ form_start(form) }}
+            {{ form_row(form.title) }}
+            {% if app.request.get("_route") == "create_task" %}
+                <input type="submit" value="Créer" class="btn btn-success mt-2">
+            {% else %}
+                <input type="submit" value="Modifier" class="btn btn-warning mt-2">
+            {% endif %}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
